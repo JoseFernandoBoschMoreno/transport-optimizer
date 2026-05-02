@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Destinos{% endblock %}
+{% block content %}
+<h2>Destinos del modelo {{ model_id }}</h2>
+<a href="{{ url_for('destinations.create', model_id=model_id) }}" class="btn btn-primary mb-3">Nuevo destino</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Código</th><th>Nombre</th><th>Lugar</th><th>Demanda</th><th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in destinations %}
+        <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.codigo }}</td>
+            <td>{{ d.nombre }}</td>
+            <td>{{ d.lugar }}</td>
+            <td>{{ d.demanda_minima }}</td>
+            <td>
+                <a href="{{ url_for('destinations.edit', model_id=model_id, dest_id=d.id) }}" class="btn btn-sm btn-secondary">Editar</a>
+                <form method="post" action="{{ url_for('destinations.delete', model_id=model_id, dest_id=d.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar destino?');">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

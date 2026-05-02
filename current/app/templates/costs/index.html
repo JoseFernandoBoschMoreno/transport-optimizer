@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Costos{% endblock %}
+{% block content %}
+<h2>Costos del modelo {{ model_id }}</h2>
+<a href="{{ url_for('costs.create', model_id=model_id) }}" class="btn btn-primary mb-3">Nuevo costo</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Origen</th><th>Destino</th><th>Costo</th><th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in costs %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.origin_id }}</td>
+            <td>{{ c.destination_id }}</td>
+            <td>{{ c.costo }}</td>
+            <td>
+                <a href="{{ url_for('costs.edit', model_id=model_id, cost_id=c.id) }}" class="btn btn-sm btn-secondary">Editar</a>
+                <form method="post" action="{{ url_for('costs.delete', model_id=model_id, cost_id=c.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar costo?');">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Modelos{% endblock %}
+{% block content %}
+<h2>Modelos</h2>
+<a href="{{ url_for('models_bp.create') }}" class="btn btn-primary mb-3">Nuevo modelo</a>
+<form method="post" action="{{ url_for('models_bp.create') }}">
+    <button type="submit" class="btn btn-secondary mb-3">Generar modelo ficticio</button>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Nombre</th><th>Descripción</th><th>Fecha</th><th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for m in models %}
+        <tr>
+            <td>{{ m.id }}</td>
+            <td>{{ m.nombre }}</td>
+            <td>{{ m.descripcion }}</td>
+            <td>{{ m.fecha_creacion }}</td>
+            <td>
+                <a href="{{ url_for('models_bp.edit', model_id=m.id) }}" class="btn btn-sm btn-secondary">Editar</a>
+                <a href="{{ url_for('origins.index', model_id=m.id) }}" class="btn btn-sm btn-outline-primary">Orígenes</a>
+                <a href="{{ url_for('destinations.index', model_id=m.id) }}" class="btn btn-sm btn-outline-primary">Destinos</a>
+                <a href="{{ url_for('costs.index', model_id=m.id) }}" class="btn btn-sm btn-outline-primary">Costos</a>
+                <a href="{{ url_for('results.index', model_id=m.id) }}" class="btn btn-sm btn-outline-success">Resultados</a>
+                <form method="post" action="{{ url_for('models_bp.delete', model_id=m.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar modelo?');">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

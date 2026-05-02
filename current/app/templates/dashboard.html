@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+<p>Seleccione una opción en la barra de navegación.</p>
+<ul>
+    <li><a href="{{ url_for('models_bp.index') }}">Modelos</a></li>
+    <li><a href="{{ url_for('users.index') }}">Usuarios (admin)</a></li>
+</ul>
+{% endblock %}

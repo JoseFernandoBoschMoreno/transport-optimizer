@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="text-center">
+    <h1>Modelos de Transporte</h1>
+    <p class="lead">Inicie sesión para gestionar modelos de transporte.</p>
+    <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Ingresar</a>
+</div>
+{% endblock %}

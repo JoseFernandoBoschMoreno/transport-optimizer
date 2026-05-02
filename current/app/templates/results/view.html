@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Detalle resultado{% endblock %}
+{% block content %}
+<h2>Resultado {{ header.id }} - Modelo {{ model_id }}</h2>
+<p><strong>Costo total:</strong> {{ header.costo_total }} | <strong>Estado:</strong> {{ header.estado }}</p>
+
+<div class="mb-3">
+    <a href="{{ url_for('results.export_excel', model_id=model_id, result_id=header.id) }}" class="btn btn-sm btn-outline-primary">Exportar Excel</a>
+    <a href="{{ url_for('results.export_csv', model_id=model_id, result_id=header.id) }}" class="btn btn-sm btn-outline-primary">Exportar CSV</a>
+    <a href="{{ url_for('results.export_json', model_id=model_id, result_id=header.id) }}" class="btn btn-sm btn-outline-primary">Exportar JSON</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Origen</th><th>Destino</th><th>Cantidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in details %}
+        <tr>
+            <td>{{ origins[d.origin_id].nombre }}</td>
+            <td>{{ destinations[d.destination_id].nombre }}</td>
+            <td>{{ d.cantidad }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Importar datos{% endblock %}
+{% block content %}
+<h2>Importar datos para modelo {{ model_id }}</h2>
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label class="form-label">Archivo</label>
+        <input type="file" name="file" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Formato</label>
+        <select name="format" class="form-select">
+            <option value="excel">Excel</option>
+            <option value="csv">CSV</option>
+            <option value="json">JSON</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Entidad (solo CSV)</label>
+        <select name="entity" class="form-select">
+            <option value="origins">Orígenes</option>
+            <option value="destinations">Destinos</option>
+            <option value="costs">Costos</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Importar</button>
+</form>
+{% endblock %}

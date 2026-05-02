@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Costo{% endblock %}
+{% block content %}
+<h2>Costo</h2>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.origin_id.label(class="form-label") }}
+        {{ form.origin_id(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.destination_id.label(class="form-label") }}
+        {{ form.destination_id(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.costo.label(class="form-label") }}
+        {{ form.costo(class="form-control") }}
+    </div>
+    <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
+</form>
+{% endblock %}

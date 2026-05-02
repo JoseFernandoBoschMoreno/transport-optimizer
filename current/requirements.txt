@@ -1,0 +1,10 @@
+Flask
+Flask-Login
+Flask-Migrate
+Flask-WTF
+SQLAlchemy
+python-dotenv
+ortools
+gurobipy
+pandas
+tabulator

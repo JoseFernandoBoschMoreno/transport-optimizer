@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Resultados{% endblock %}
+{% block content %}
+<h2>Resultados del modelo {{ model_id }}</h2>
+<form method="post" action="{{ url_for('results.run', model_id=model_id) }}">
+    <button type="submit" class="btn btn-primary mb-3">Ejecutar optimización</button>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Costo total</th><th>Estado</th><th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for h in headers %}
+        <tr>
+            <td>{{ h.id }}</td>
+            <td>{{ h.costo_total }}</td>
+            <td>{{ h.estado }}</td>
+            <td>
+                <a href="{{ url_for('results.view', model_id=model_id, result_id=h.id) }}" class="btn btn-sm btn-secondary">Ver</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

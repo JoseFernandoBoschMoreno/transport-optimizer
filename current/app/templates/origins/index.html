@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Orígenes{% endblock %}
+{% block content %}
+<h2>Orígenes del modelo {{ model_id }}</h2>
+<a href="{{ url_for('origins.create', model_id=model_id) }}" class="btn btn-primary mb-3">Nuevo origen</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Código</th><th>Nombre</th><th>Lugar</th><th>Capacidad</th><th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for o in origins %}
+        <tr>
+            <td>{{ o.id }}</td>
+            <td>{{ o.codigo }}</td>
+            <td>{{ o.nombre }}</td>
+            <td>{{ o.lugar }}</td>
+            <td>{{ o.capacidad_maxima }}</td>
+            <td>
+                <a href="{{ url_for('origins.edit', model_id=model_id, origin_id=o.id) }}" class="btn btn-sm btn-secondary">Editar</a>
+                <form method="post" action="{{ url_for('origins.delete', model_id=model_id, origin_id=o.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar origen?');">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
